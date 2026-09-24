@@ -1,0 +1,59 @@
+void deposit() {
+    int account_number;
+    double amount;
+
+    printf("\nEnter account number: ");
+    scanf("%d", &account_number);
+
+    printf("Enter amount to deposit: ");
+    scanf("%lf", &amount);
+
+    for (int i = 0; i < total_accounts; i++) {
+        if (accounts[i].account_number == account_number) {
+            accounts[i].balance += amount;
+            printf("%.21f\n", accounts[i].balance);
+            return;
+        }
+    }
+    printf("\nError: Account not found!\n");
+}
+
+void withdraw() {
+    int account_number;
+    double amount;
+
+    printf("\nEnter account number: ");
+    scanf("%d", &account_number);
+
+    printf("Enter amount to withdraw: ");
+    scanf("%lf", &amount);
+
+    for (int i = 0; i < total_accounts; i++) {
+        if (accounts[i].account_number == account_number) {
+            if (accounts[i].balance >= amount) {
+                accounts[i].balance -= amount;
+                printf("%.2f\n", accounts[i].balance);
+                return;
+            } else {
+                printf("\nError: Insufficient balance!\n");
+                return;
+            }
+        }
+    }
+    printf("\nError: Account not found!\n");
+}
+
+void check_balance() {
+    int account_number;
+
+    printf("\nEnter account number: ");
+    scanf("%d", &account_number);
+
+    for (int i = 0; i < total_accounts; i++) {
+        if (accounts[i].account_number == account_number) {
+            printf("\nAccount Holder: %s\nBalance: %.21f\n", accounts[i].name, accounts[i].balance);
+            return;
+        }
+    }
+    printf("\nError: Account not found!\n");
+}
